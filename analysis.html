@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CycleSync - Balance My Day</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #d81b60;
+}
+
+label {
+    font-weight: 500;
+    margin-top: 10px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ad1457;
+}
+
+#resultSection {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8bbd0;
+    border-radius: 10px;
+    display: none;
+}
+
+.energy-bar {
+    height: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>💖 CycleSync</h1>
+
+<form id="cycleForm">
+
+<label>Last Period Date</label>
+<input type="date" id="lastPeriod" required>
+
+<label>Cycle Length (Days)</label>
+<input type="number" id="cycleLength" value="28" min="21" max="35" required>
+
+<label>Mood</label>
+<select id="mood" required>
+<option value="">Select Mood</option>
+<option value="Energetic">Energetic</option>
+<option value="Neutral">Neutral</option>
+<option value="Tired">Tired</option>
+<option value="Irritated">Irritated</option>
+</select>
+
+<label>Pain Level</label>
+<select id="pain" required>
+<option value="">Select Pain Level</option>
+<option value="Low">Low</option>
+<option value="Medium">Medium</option>
+<option value="High">High</option>
+</select>
+
+<label>Tasks to Complete Today</label>
+<textarea id="tasks" placeholder="Enter tasks separated by commas" required></textarea>
+
+<button type="submit">✨ Balance My Day</button>
+
+</form>
+
+<div id="resultSection">
+<h2>✨ Your Balanced Plan</h2>
+
+<p><strong>Current Phase:</strong> <span id="phaseResult"></span></p>
+<p><strong>Energy Level:</strong> <span id="energyResult"></span></p>
+
+<div id="energyBar" class="energy-bar"></div>
+
+<h3>📋 Recommended Tasks</h3>
+<ul id="taskList"></ul>
+
+<p id="suggestionText"></p>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("cycleForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let lastPeriod = new Date(document.getElementById("lastPeriod").value);
+let cycleLength = parseInt(document.getElementById("cycleLength").value);
+let mood = document.getElementById("mood").value;
+let pain = document.getElementById("pain").value;
+let tasks = document.getElementById("tasks").value.split(",");
+
+let today = new Date();
+let diffTime = today - lastPeriod;
+let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+let cycleDay = diffDays % cycleLength;
+
+let phase = "";
+if(cycleDay >= 1 && cycleDay <= 5) phase = "Menstrual";
+else if(cycleDay <= 13) phase = "Follicular";
+else if(cycleDay <= 16) phase = "Ovulation";
+else phase = "Luteal";
+
+let energyScore = 5;
+
+if(phase === "Menstrual") energyScore -= 2;
+if(mood === "Tired") energyScore -= 2;
+if(mood === "Irritated") energyScore -= 1;
+if(pain === "High") energyScore -= 2;
+if(pain === "Medium") energyScore -= 1;
+if(mood === "Energetic") energyScore += 2;
+
+let energyLevel = "";
+let energyColor = "";
+let suggestion = "";
+
+if(energyScore >= 6){
+energyLevel = "High 🔵";
+energyColor = "#4CAF50";
+suggestion = "Great time to handle challenging or important tasks!";
+}
+else if(energyScore >= 3){
+energyLevel = "Medium 🟡";
+energyColor = "#FFC107";
+suggestion = "Focus on moderate tasks and take short breaks.";
+}
+else{
+energyLevel = "Low 🔴";
+energyColor = "#F44336";
+suggestion = "Prioritize light tasks and rest when needed.";
+}
+
+document.getElementById("phaseResult").innerText = phase;
+document.getElementById("energyResult").innerText = energyLevel;
+document.getElementById("energyBar").style.background = energyColor;
+document.getElementById("suggestionText").innerText = suggestion;
+
+let taskList = document.getElementById("taskList");
+taskList.innerHTML = "";
+
+let recommendedCount = energyLevel.includes("High") ? tasks.length :
+energyLevel.includes("Medium") ? 2 : 1;
+
+tasks.slice(0, recommendedCount).forEach(task => {
+let li = document.createElement("li");
+li.textContent = task.trim();
+taskList.appendChild(li);
+});
+
+document.getElementById("resultSection").style.display = "block";
+});
+</script>
+
+</body>
+</html>
