@@ -1,217 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CycleSync - Balance My Day</title>
+    <title>CycleSync – Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #fdf2f8, #f3e8ff);
+            padding: 40px;
+            text-align: center;
+        }
 
-<style>
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #fce4ec, #f3e5f5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
+        h1 {
+            color: #7c3aed;
+        }
 
-.container {
-    background: white;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            max-width: 500px;
+            margin: 30px auto;
+        }
 
-h1 {
-    text-align: center;
-    color: #d81b60;
-}
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            background: #c084fc;
+            color: white;
+            cursor: pointer;
+            margin-top: 15px;
+        }
 
-label {
-    font-weight: 500;
-    margin-top: 10px;
-    display: block;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-textarea {
-    resize: none;
-    height: 80px;
-}
-
-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px;
-    background-color: #d81b60;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #ad1457;
-}
-
-#resultSection {
-    margin-top: 20px;
-    padding: 15px;
-    background: #f8bbd0;
-    border-radius: 10px;
-    display: none;
-}
-
-.energy-bar {
-    height: 15px;
-    border-radius: 10px;
-    margin: 10px 0;
-}
-
-ul {
-    padding-left: 20px;
-}
-</style>
+        .warning {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1>💖 CycleSync</h1>
+<h1>🌸 Your Cycle Analysis</h1>
 
-<form id="cycleForm">
+<div class="card">
+    <h3 id="phase"></h3>
+    <p id="cycleDay"></p>
+    <p id="moodInfo"></p>
+    <p id="productivity"></p>
+    <p id="warning"></p>
 
-<label>Last Period Date</label>
-<input type="date" id="lastPeriod" required>
-
-<label>Cycle Length (Days)</label>
-<input type="number" id="cycleLength" value="28" min="21" max="35" required>
-
-<label>Mood</label>
-<select id="mood" required>
-<option value="">Select Mood</option>
-<option value="Energetic">Energetic</option>
-<option value="Neutral">Neutral</option>
-<option value="Tired">Tired</option>
-<option value="Irritated">Irritated</option>
-</select>
-
-<label>Pain Level</label>
-<select id="pain" required>
-<option value="">Select Pain Level</option>
-<option value="Low">Low</option>
-<option value="Medium">Medium</option>
-<option value="High">High</option>
-</select>
-
-<label>Tasks to Complete Today</label>
-<textarea id="tasks" placeholder="Enter tasks separated by commas" required></textarea>
-
-<button type="submit">✨ Balance My Day</button>
-
-</form>
-
-<div id="resultSection">
-<h2>✨ Your Balanced Plan</h2>
-
-<p><strong>Current Phase:</strong> <span id="phaseResult"></span></p>
-<p><strong>Energy Level:</strong> <span id="energyResult"></span></p>
-
-<div id="energyBar" class="energy-bar"></div>
-
-<h3>📋 Recommended Tasks</h3>
-<ul id="taskList"></ul>
-
-<p id="suggestionText"></p>
-
-</div>
-
+    <button onclick="showSuggestions()">Suggestions</button>
 </div>
 
 <script>
-document.getElementById("cycleForm").addEventListener("submit", function(e){
-e.preventDefault();
 
-let lastPeriod = new Date(document.getElementById("lastPeriod").value);
-let cycleLength = parseInt(document.getElementById("cycleLength").value);
-let mood = document.getElementById("mood").value;
-let pain = document.getElementById("pain").value;
-let tasks = document.getElementById("tasks").value.split(",");
+function calculateAnalysis() {
 
-let today = new Date();
-let diffTime = today - lastPeriod;
-let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-let cycleDay = diffDays % cycleLength;
+    let lastPeriod = localStorage.getItem("lastPeriod");
+    let cycleLength = parseInt(localStorage.getItem("cycleLength"));
+    let mood = localStorage.getItem("mood");
+    let pain = localStorage.getItem("pain");
+    let tasks = localStorage.getItem("tasks");
 
-let phase = "";
-if(cycleDay >= 1 && cycleDay <= 5) phase = "Menstrual";
-else if(cycleDay <= 13) phase = "Follicular";
-else if(cycleDay <= 16) phase = "Ovulation";
-else phase = "Luteal";
+    let today = new Date();
+    let lastDate = new Date(lastPeriod);
 
-let energyScore = 5;
+    let diff = today - lastDate;
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-if(phase === "Menstrual") energyScore -= 2;
-if(mood === "Tired") energyScore -= 2;
-if(mood === "Irritated") energyScore -= 1;
-if(pain === "High") energyScore -= 2;
-if(pain === "Medium") energyScore -= 1;
-if(mood === "Energetic") energyScore += 2;
+    let phase = "";
+    let suggestion = "";
 
-let energyLevel = "";
-let energyColor = "";
-let suggestion = "";
+    if (days <= 5) {
+        phase = "Menstrual Phase 💗";
+        suggestion = "Focus on light tasks and rest properly.";
+    }
+    else if (days <= 13) {
+        phase = "Follicular Phase 🌸";
+        suggestion = "Great time to start new and challenging tasks.";
+    }
+    else if (days <= 16) {
+        phase = "Ovulation Phase 💪";
+        suggestion = "Best time for teamwork and high-focus tasks.";
+    }
+    else {
+        phase = "Luteal Phase 🌿";
+        suggestion = "Slow down. Do planning and lighter work.";
+    }
 
-if(energyScore >= 6){
-energyLevel = "High 🔵";
-energyColor = "#4CAF50";
-suggestion = "Great time to handle challenging or important tasks!";
+    // Modify suggestion using mood & pain
+    if (pain === "High") {
+        suggestion += " Since pain is high, reduce workload and prioritize comfort.";
+    }
+
+    if (mood === "Tired" || mood === "Irritated") {
+        suggestion += " Choose simpler tasks from your list today.";
+    }
+
+    document.getElementById("phase").innerHTML = phase;
+    document.getElementById("cycleDay").innerHTML = "You are on Day " + days + " of your cycle.";
+    document.getElementById("moodInfo").innerHTML = "Mood: " + mood + " | Pain Level: " + pain;
+    document.getElementById("productivity").innerHTML = "🎯 Recommendation: " + suggestion;
+
+    if (days > cycleLength) {
+        document.getElementById("warning").innerHTML =
+        "⚠ Your cycle length has exceeded expected days. Monitor your health.";
+    }
 }
-else if(energyScore >= 3){
-energyLevel = "Medium 🟡";
-energyColor = "#FFC107";
-suggestion = "Focus on moderate tasks and take short breaks.";
-}
-else{
-energyLevel = "Low 🔴";
-energyColor = "#F44336";
-suggestion = "Prioritize light tasks and rest when needed.";
+
+function showSuggestions() {
+    alert("✨ Personalized suggestions coming soon!");
 }
 
-document.getElementById("phaseResult").innerText = phase;
-document.getElementById("energyResult").innerText = energyLevel;
-document.getElementById("energyBar").style.background = energyColor;
-document.getElementById("suggestionText").innerText = suggestion;
+calculateAnalysis();
 
-let taskList = document.getElementById("taskList");
-taskList.innerHTML = "";
-
-let recommendedCount = energyLevel.includes("High") ? tasks.length :
-energyLevel.includes("Medium") ? 2 : 1;
-
-tasks.slice(0, recommendedCount).forEach(task => {
-let li = document.createElement("li");
-li.textContent = task.trim();
-taskList.appendChild(li);
-});
-
-document.getElementById("resultSection").style.display = "block";
-});
 </script>
 
 </body>
