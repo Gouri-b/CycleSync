@@ -77,6 +77,41 @@ This creates a gentle, adaptive productivity experience.
 ### For Software:
 
 #### Installation
+
+## Project Documentation
+
+### Screenshots
+
+#### Login Page
+
+## Sign In Page Preview
+
+![Sign In Page](signin.jpeg)
+
+
+#### Data Entry Page
+![Data Entry Page](screenshots/dataentry.png)  
+User enters mood and cycle details.
+
+#### Suggestions Page
+![Solutions Page](screenshots/solutions.png)  
+App provides calming and productivity suggestions.
+
+---
+
+## Diagrams
+
+### System Architecture
+  
+Simple client-side architecture using HTML, CSS, and JavaScript.
+
+### Application Workflow
+
+User flow:
 ```bash
+
+
 git clone https://github.com/your-username/cyclesync.git
 cd cyclesync
+
+
