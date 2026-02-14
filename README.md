@@ -83,9 +83,6 @@ This creates a gentle, adaptive productivity experience.
 ### Screenshots
 
 #### Login Page
-
-## Sign In Page Preview
-
 ![Sign In Page](signin.jpeg)
 
 
