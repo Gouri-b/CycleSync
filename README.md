@@ -2,7 +2,7 @@
   <img src="./img .png" alt="Project Banner" width="100%">
 </p>
 
-# CycleSync 🎯
+# CycleSync 
 
 ## Basic Details
 
@@ -111,7 +111,7 @@ Simple client-side architecture using HTML, CSS, and JavaScript.
 User flow:
 ```bash
 ### Application Workflow
-
+'''
 *Workflow:*  
 Users begin at the login page, enter their cycle and mood information, receive a phase-based analysis, and are then guided to personalized productivity and wellness suggestions.
 
