@@ -114,7 +114,7 @@ Simple client-side architecture using HTML, CSS, and JavaScript.
 Users begin at the login page, enter their cycle and mood information, receive a phase-based analysis, and are then guided to personalized productivity and wellness suggestions.
 
 ### Video
-[Watch the demo link]
+Watch the demo link :
 https://drive.google.com/file/d/1J_dp1kQGMiGECrDHEZt-BdEv_PQyJggA/view?usp=sharing
 
 ## AI Tools Used (Optional - For Transparency Bonus)
