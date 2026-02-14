@@ -90,11 +90,15 @@ This creates a gentle, adaptive productivity experience.
 
 
 #### Data Entry Page
-![Data Entry Page](screenshots/dataentry.png)  
+![Data Entry Page](landingpage.jpeg)  
 User enters mood and cycle details.
 
+#### Analysis Page
+![Analysis Page](analysis.jpeg)  
+App provides analysis of data entry.
+
 #### Suggestions Page
-![Solutions Page](screenshots/solutions.png)  
+![Suggestions Page](suggestion.jpeg)  
 App provides calming and productivity suggestions.
 
 ---
