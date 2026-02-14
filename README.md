@@ -119,37 +119,50 @@ Users begin at the login page, enter their cycle and mood information, receive a
 git clone https://github.com/your-username/cyclesync.git
 cd cyclesync
 
-## AI Tools Used (Optional - For Transparency Bonus)
+ ## AI Tools Used (Optional - For Transparency Bonus)
 
-**Tool Used:** ChatGPT  
+**Tool Used:** ChatGPT
 
-**Purpose:**
-- UI styling suggestions
-- Debugging JavaScript logic
-- Page layout and navigation planning
-- Generating small code snippets for features
+**Purpose:** [What you used it for]
+- Example: "Generated boilerplate React components"
+- Example: "Debugging assistance for async functions"
+- Example: "Code review and optimization suggestions"
 
 **Key Prompts Used:**
-- “Create a cycle-aware task planner UI”
-- “Add breathing animation using JavaScript”
-- “Design an aesthetic login page”
-- “Connect pages using JavaScript navigation”
+- "Create a REST API endpoint for user authentication"
+- "Debug this async function that's causing race conditions"
+- "Optimize this database query for better performance"
 
-**Percentage of AI-generated code:**  
-Approximately 50-60%
+**Percentage of AI-generated code:** [Approximately X%]
 
 **Human Contributions:**
-- Project idea and concept
-- Architecture and user flow design
-- UI/UX decisions
-- Feature selection and integration
-- Testing and presentation preparation
+- Architecture design and planning
+- Custom business logic implementation
+- Integration and testing
+- UI/UX design decisions
 
+*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
 
 ---
 
 ## Team Contributions
 
-- Gouri B: Frontend design, UI styling, feature integration, and logic
-- Diya Shameer: Page navigation, testing, debugging, and documentation
+- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
+- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
+- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+
+---
+
+## License
+
+This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
+
+**Common License Options:**
+- MIT License (Permissive, widely used)
+- Apache 2.0 (Permissive with patent grant)
+- GPL v3 (Copyleft, requires derivative works to be open source)
+
+---
+
+Made with ❤️ at TinkerHub
 
