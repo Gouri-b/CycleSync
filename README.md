@@ -102,6 +102,8 @@ App provides calming and productivity suggestions.
 
 ## Diagrams
 
+![Diagram](diagram.jpeg) 
+
 ### System Architecture
   
 Simple client-side architecture using HTML, CSS, and JavaScript.
