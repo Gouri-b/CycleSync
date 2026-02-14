@@ -14,7 +14,7 @@ QubitX
 - Member 2: Diya Shameer – Rajiv Gandhi Institute of Technology,Kottayam
 
 ### Hosted Project Link
-[Add your deployed project link here]
+https://cycle-sync-eta.vercel.app/
 
 ---
 
