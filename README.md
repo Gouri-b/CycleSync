@@ -108,10 +108,6 @@ Simple client-side architecture using HTML, CSS, and JavaScript.
 
 ### Application Workflow
 
-User flow:
-
-### Application Workflow
-
 *Workflow:*  
 Users begin at the login page, enter their cycle and mood information, receive a phase-based analysis, and are then guided to personalized productivity and wellness suggestions.
 
