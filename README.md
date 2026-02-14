@@ -111,10 +111,6 @@ Simple client-side architecture using HTML, CSS, and JavaScript.
 *Workflow:*  
 Users begin at the login page, enter their cycle and mood information, receive a phase-based analysis, and are then guided to personalized productivity and wellness suggestions.
 
-
-git clone https://github.com/your-username/cyclesync.git
-cd cyclesync
-
 ## AI Tools Used (Optional - For Transparency Bonus)
 
 **Tool Used:** ChatGPT  
