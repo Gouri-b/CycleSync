@@ -144,3 +144,5 @@ Approximately 50–60%
 - Gouri B: Frontend design, UI styling, feature integration, and logic
 - Diya Shameer: Page navigation, testing, debugging, and documentation
 
+  Made with ❤️ at TinkerHub
+
