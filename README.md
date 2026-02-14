@@ -119,4 +119,37 @@ Users begin at the login page, enter their cycle and mood information, receive a
 git clone https://github.com/your-username/cyclesync.git
 cd cyclesync
 
+## AI Tools Used (Optional - For Transparency Bonus)
+
+**Tool Used:** ChatGPT  
+
+**Purpose:**
+- UI styling suggestions
+- Debugging JavaScript logic
+- Page layout and navigation planning
+- Generating small code snippets for features
+
+**Key Prompts Used:**
+- “Create a cycle-aware task planner UI”
+- “Add breathing animation using JavaScript”
+- “Design an aesthetic login page”
+- “Connect pages using JavaScript navigation”
+
+**Percentage of AI-generated code:**  
+Approximately 50-60%
+
+**Human Contributions:**
+- Project idea and concept
+- Architecture and user flow design
+- UI/UX decisions
+- Feature selection and integration
+- Testing and presentation preparation
+
+
+---
+
+## Team Contributions
+
+- Gouri B: Frontend design, UI styling, feature integration, and logic
+- Diya Shameer: Page navigation, testing, debugging, and documentation
 
